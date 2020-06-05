@@ -1,0 +1,61 @@
+.navbar-nav .nav-link {
+    color: rgb(243, 238, 238) !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.navbar {
+    overflow: hidden;
+    /*background-color: #333;*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(105, 105, 105, 0.73);
+    margin-bottom: 50px;
+}
+
+.navbar-brand{
+    color: white!important;
+}
+
+body{
+	background-color: rgb(36, 41, 46) !important;
+    color: white;
+	padding-top: 40px;
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: #fff;
+}
+
+p, span, small{
+	color: #eaeaea;
+}
+
+#box{
+    /*width: 300px;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	border: 2px solid rgb(24, 26, 31);
+	border-radius: 5px;
+	text-align: center;
+	padding: 20px;
+	background-color: rgb(49, 54, 63) !important;
+}
+
+#profile_pic{
+	display: block;
+	border-radius: 50%;
+	margin: 10px auto;
+	width: 200px;
+	border: 2px solid rgb(24, 26, 31);
+
+}
+
+hr{
+	margin: 20px;
+	background-color: #eaeaea;
+}

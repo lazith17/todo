@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static "todo/bootstrap.min.css" %}">
+    <link rel="icon" type="image/png" href="{% static 'todo/logo.png' %}">
+    <link rel="stylesheet" href="{% static "todo/main.css" %}">
+    <title>Todo ...!</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'todo/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
+            <span>Todo...!</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item {{ current }}">
+                        <a class="nav-link" href="{% url 'currenttodos' %}">Current</a>
+                    </li>
+                    <li class="nav-item {{ completed }}">
+                        <a class="nav-link" href="{% url 'completedtodos' %}">Completed</a>
+                    </li>
+                    <li class="nav-item {{ create }}">
+                        <a class="nav-link" href="{% url 'createtodo' %}">Create</a>
+                    </li>
+
+                </ul>
+            {% endif %}
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">{{ user }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                        <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
+                            {% csrf_token %}
+                            <button id="signOutBtn" type="submit">Logout</button>
+                        </form>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signupuser' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static "todo/jquery-3.4.1.slim.min.js" %}"></script>
+<script src="{% static "todo/popper.min.js" %}"></script>
+<script src="{% static "todo/bootstrap.min.js" %}"></script>
+</body>
+</html>
