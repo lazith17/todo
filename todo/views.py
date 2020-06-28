@@ -8,6 +8,7 @@ from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     return render(request, 'todo/home.html')
 
@@ -97,3 +98,18 @@ def deletetodo(request, todo_pk):
     if request.method == 'POST':
         todo.delete()
         return redirect('currenttodos')
+
+@login_required
+def reportgenerator(request):
+    if request.method == 'GET':
+        return render(request, 'todo/reportgenerator.html', {'form': TodoForm()})
+    else:
+        try:
+            form = TodoForm(request.POST)
+            newtodo = form.save(commit=False)
+            newtodo.user = request.user
+            newtodo.save()
+            return redirect('reportgenerator')
+        except ValueError:
+            return render(request, 'todo/reportgenerator.html',
+                          {'form': TodoForm(), 'error': 'Bad data passed in. Try again.'})
