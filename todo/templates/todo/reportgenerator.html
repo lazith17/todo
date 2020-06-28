@@ -1,6 +1,6 @@
 {% extends "todo/base.html" %}
 {% block content %}
-
+    {% load static %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
             <h2>Report Generator</h2>
@@ -20,7 +20,7 @@
             </form>
         </div>
     </div>
-    <br>
+    <br>l
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -30,5 +30,8 @@
             {% endfor %}
         </ul>
     {% endif %}
+    <div class="row mt-5">
+        <a href="{% static "reports/Comparison_Report.xlsx" %}" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>
+    </div>
 
 {% endblock %}

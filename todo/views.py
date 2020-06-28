@@ -190,7 +190,7 @@ def reportgenerator(request):
             df = df.append(pd.DataFrame({'NOTE': []}), sort=False)
             df.iloc[:, 6:16] = df.iloc[:, 6:16].round(2)
 
-            writer = pd.ExcelWriter('Comparison Report' + '.xlsx', engine='xlsxwriter')
+            writer = pd.ExcelWriter('Comparison_Report.xlsx', engine='xlsxwriter')
             df.to_excel(writer, 'TOBACCO', startrow=1, startcol=0, index=False)
             workbook = writer.book
             worksheet = writer.sheets['TOBACCO']
