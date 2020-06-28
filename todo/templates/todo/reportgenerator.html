@@ -20,5 +20,15 @@
             </form>
         </div>
     </div>
+    <br>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
 {% endblock %}
