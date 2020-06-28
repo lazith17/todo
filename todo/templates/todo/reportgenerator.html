@@ -16,10 +16,6 @@
             {% endif %}
             <form method="POST">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control" id="title" required>
-                </div>
                 <button type="submit" class="btn btn-warning">Generate Comparison Report</button>
             </form>
         </div>
