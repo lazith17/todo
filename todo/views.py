@@ -1,8 +1,12 @@
+import os
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+
+from todowoo import settings
 from .forms import TodoForm
 from .models import Todo
 from django.utils import timezone
@@ -11,7 +15,7 @@ from tkinter import messagebox
 from tkinter import *
 import pandas as pd
 from django.contrib import messages
-
+from django.templatetags.static import static
 def home(request):
     return render(request, 'todo/home.html')
 
@@ -113,9 +117,24 @@ def reportgenerator(request):
             # newtodo.user = request.user
             # newtodo.save()
 
-            df4101 = pd.read_excel('4101_ItemFileReportRetailer_MAY31.xls')
-            dfttl = pd.read_excel('ITL.xlsx')
-            dfcmt = pd.read_excel('COREMARK.xlsx', sheet_name='TOBACCO')
+            cwd = os.getcwd()
+            # itemfilepath = os.path.join(settings.STATIC_URL, 'reports/4101_ItemFileReportRetailer_MAY31.xls')
+            # itemfilepath = '4101_ItemFileReportRetailer_MAY31.xls'
+            itemfilepath = cwd + '\\todo\\static\\reports\\4101_ItemFileReportRetailer_MAY31.xls'
+            df4101 = pd.read_excel(itemfilepath)
+
+            itlpath = cwd + '\\todo\\static\\reports\\ITL.xlsx'
+            # ile_path = os.path.join(settings.STATIC_ROOT, 'data/foobar.csv')
+            # itlpath = os.path.join(settings.STATIC_URL, 'reports/ITL.xlsx')
+            # itlpath = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static/reports/ITL.xlsx')
+            # itlpath = 'ITL.xlsx'
+            dfttl = pd.read_excel(itlpath)
+
+            # coremarkpath = os.path.join(settings.STATIC_URL, 'reports/COREMARK.xlsx')
+            coremarkpath = cwd + '\\todo\\static\\reports\\COREMARK.xlsx'
+            # coremarkpath = 'COREMARK.xlsx'
+            dfcmt = pd.read_excel(coremarkpath, sheet_name='TOBACCO')
+
             # dfcmv=pd.read_excel('coremark.xlsx',sheet_name='VAPE')
             # dfcmc=pd.read_excel('coremark.xlsx',sheet_name='CIGAR')
             # dfcmo=pd.read_excel('coremark.xlsx',sheet_name='OTHER')
@@ -190,7 +209,7 @@ def reportgenerator(request):
             df = df.append(pd.DataFrame({'NOTE': []}), sort=False)
             df.iloc[:, 6:16] = df.iloc[:, 6:16].round(2)
 
-            writer = pd.ExcelWriter('Comparison_Report.xlsx', engine='xlsxwriter')
+            writer = pd.ExcelWriter(cwd +'\\todo\\static\\reports\\Comparison_Report.xlsx', engine='xlsxwriter')
             df.to_excel(writer, 'TOBACCO', startrow=1, startcol=0, index=False)
             workbook = writer.book
             worksheet = writer.sheets['TOBACCO']
