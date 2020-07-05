@@ -90,7 +90,6 @@ notebook==6.0.3
 numpy==1.18.4
 oauthlib==3.0.1
 olefile==0.46
-opencv-python @ file:///C:/Users/lazit/opencv_python-4.2.0.34-cp38-cp38-win_amd64.whl
 openpyxl==3.0.3
 packaging==20.3
 pandas==1.0.3
