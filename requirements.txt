@@ -3,3 +3,6 @@ Django==3.0.8
 Pillow==7.1.2
 pytz==2018.5
 sqlparse==0.2.4
+pandas==1.0.3
+pandas-datareader==0.8.1
+XlsxWriter==1.2.9
