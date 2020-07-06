@@ -11,8 +11,6 @@ from .forms import TodoForm
 from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from tkinter import messagebox
-from tkinter import *
 import pandas as pd
 from django.contrib import messages
 from django.templatetags.static import static
