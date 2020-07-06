@@ -130,8 +130,8 @@ def reportgenerator(request):
             # itlpath = 'ITL.xlsx'
             dfttl = pd.read_excel(itlpath)
 
-            # coremarkpath = os.path.join(settings.STATIC_URL, 'reports/COREMARK.xlsx')
-            coremarkpath = cwd + '\\todo\\static\\reports\\COREMARK.xlsx'
+            coremarkpath = os.path.join(settings.STATIC_URL, 'reports/COREMARK.xlsx')
+            # coremarkpath = cwd + '\\todo\\static\\reports\\COREMARK.xlsx'
             # coremarkpath = 'COREMARK.xlsx'
             dfcmt = pd.read_excel(coremarkpath, sheet_name='TOBACCO')
 
