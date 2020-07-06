@@ -118,14 +118,13 @@ def reportgenerator(request):
             # newtodo.save()
 
             cwd = os.getcwd()
-            # itemfilepath = os.path.join(settings.STATIC_URL, 'reports/4101_ItemFileReportRetailer_MAY31.xls')
+            itemfilepath = os.path.join(settings.STATIC_URL, 'reports/4101_ItemFileReportRetailer_MAY31.xls')
             # itemfilepath = '4101_ItemFileReportRetailer_MAY31.xls'
-            itemfilepath = cwd + '\\todo\\static\\reports\\4101_ItemFileReportRetailer_MAY31.xls'
+            # itemfilepath = cwd + '\\todo\\static\\reports\\4101_ItemFileReportRetailer_MAY31.xls'
             df4101 = pd.read_excel(itemfilepath)
 
-            itlpath = cwd + '\\todo\\static\\reports\\ITL.xlsx'
-            # ile_path = os.path.join(settings.STATIC_ROOT, 'data/foobar.csv')
-            # itlpath = os.path.join(settings.STATIC_URL, 'reports/ITL.xlsx')
+            # itlpath = cwd + '\\todo\\static\\reports\\ITL.xlsx'
+            itlpath = os.path.join(settings.STATIC_URL, 'reports/ITL.xlsx')
             # itlpath = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static/reports/ITL.xlsx')
             # itlpath = 'ITL.xlsx'
             dfttl = pd.read_excel(itlpath)
