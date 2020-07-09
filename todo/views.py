@@ -119,6 +119,7 @@ def upload(request):
             print(upload_file.name)
             print(upload_file.size)
             fs = FileSystemStorage()
+            fs.delete(upload_file.name)
             name = fs.save(upload_file.name, upload_file)
             context['url'] = fs.url(name)
         except MultiValueDictKeyError:
