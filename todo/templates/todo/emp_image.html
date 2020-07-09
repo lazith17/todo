@@ -1,0 +1,23 @@
+{% extends "todo/base.html" %}
+{% block content %}
+    {% load static %}
+    <br><br>
+    <h2>Upload Files</h2>
+    <br>
+    {% if document != "" %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" class="btn btn-outline-warning" name="document">
+            <br><br>
+            <button type="submit" class="btn btn-primary">Upload File</button>
+        </form>
+        {% if url != 'No' %}
+            <p>Uploaded File : <a href="{{ url }}">{{ url }}</a></p>
+
+        {% else %}
+            <p>Uploaded File : No file selected</p>
+        {% endif %}
+    {% endif %}
+
+
+{% endblock %}

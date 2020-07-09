@@ -36,4 +36,8 @@ urlpatterns = [
     path('todo/<int:todo_pk>/complete', views.completetodo, name='completetodo'),
     path('todo/<int:todo_pk>/delete', views.deletetodo, name='deletetodo'),
     path('reportgenerator/', views.reportgenerator, name='reportgenerator'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('employee/', views.employee, name='employee'),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
