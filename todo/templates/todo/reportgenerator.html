@@ -1,25 +1,18 @@
 {% extends "todo/base.html" %}
 {% block content %}
     {% load static %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            <h2>Report Generator</h2>
+    <br><br>
+    <h2>Report Generator</h2>
+    <br>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
         </div>
-    </div>
-
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            {% if error %}
-                <div class="alert alert-danger" role="alert">
-                    {{ error }}
-                </div>
-            {% endif %}
-            <form method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-warning">Generate Comparison Report</button>
-            </form>
-        </div>
-    </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Generate Comparison Report</button>
+    </form>
     <br>
     {% if messages %}
         <ul class="messages">
@@ -30,9 +23,9 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <div class="row mt-5">
-{#       <a href="{% static "Comparison_Report.xlsx" %}" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>#}
-      <a href="/media/Comparison_Report.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>
+    <div>
+        {#<a href="{% static "Comparison_Report.xlsx" %}" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>#}
+        <a href="/media/Comparison_Report.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>
     </div>
 
 {% endblock %}

@@ -110,7 +110,7 @@ def deletetodo(request, todo_pk):
 
 
 @login_required
-def employee(request):
+def upload(request):
     todos = Todo.objects.filter(user=request.user)
     context = {}
     if request.method == 'POST':
@@ -124,7 +124,7 @@ def employee(request):
         except MultiValueDictKeyError:
             context['url'] = 'No'
 
-    return render(request, 'todo/emp_image.html', context)
+    return render(request, 'todo/upload.html', context)
 
 
 @login_required

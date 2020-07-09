@@ -36,7 +36,7 @@ urlpatterns = [
     path('todo/<int:todo_pk>/complete', views.completetodo, name='completetodo'),
     path('todo/<int:todo_pk>/delete', views.deletetodo, name='deletetodo'),
     path('reportgenerator/', views.reportgenerator, name='reportgenerator'),
-    path('employee/', views.employee, name='employee'),
+    path('upload/', views.upload, name='upload'),
 ]
 
 if settings.DEBUG:
