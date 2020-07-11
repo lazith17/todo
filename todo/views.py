@@ -281,13 +281,13 @@ def reportgenerator(request): # generate_invoice
 
                 df2.to_excel(writer, sheet_name='total', startrow=0, startcol=0, index=False)
 
-        def convert_pdf(path, codec='utf-8', password=''):
+        def convert_pdf(pdf_path, codec='utf-8', password=''):
 
             rsrcmgr = PDFResourceManager()
             retstr = BytesIO()
             laparams = LAParams()
             device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
-            fp = open(path, 'rb')
+            fp = open(pdf_path, 'rb')
             interpreter = PDFPageInterpreter(rsrcmgr, device)
             maxpages = 0
             caching = True
@@ -419,14 +419,14 @@ def reportgenerator(request): # generate_invoice
                 fileExtension = pdf.split(".")[-1]
                 fileName = pdf.split(".")[0]
                 if fileExtension.lower() == "pdf":
-                    pdfFilename = pdfDir + "\\" + pdf
+                    pdfFilename = pdfDir + "/" + pdf
                     text = convert_pdf(pdfFilename)  # get string of text content of pdf
                     print("txtDirlas " + txtDir)
                     tables = text_to_table(text)
-                    writer = pd.ExcelWriter(txtDir + "\\" + fileName+'.xlsx',engine='xlsxwriter')
+                    writer = pd.ExcelWriter(txtDir + "/" + fileName+'.xlsx',engine='xlsxwriter')
                     # writer = pd.ExcelWriter(fs.path('xlsx') + fileName+'.xlsx', engine='xlsxwriter')
                     try:
-                        os.chmod(txtDir + "\\" + fileName + '.xlsx', stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
+                        os.chmod(txtDir + "/" + fileName + '.xlsx', stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
                         # os.chmod(fs.path('table.xlsx'), stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
                         # print('Files Created Las')
                     except:
@@ -444,7 +444,7 @@ def reportgenerator(request): # generate_invoice
                     df = df[['ITEM', 'UPC', 'QUANTITY', 'DESCRIPTION', 'PACKING', 'P', 'Date', 'UNIT COST', 'Unit Disc']]
                     writer.save()
                     writer.close()
-                    os.chmod(txtDir + "\\" + fileName + '.xlsx', stat.S_IREAD | stat.S_IRGRP | stat.S_IROTH)
+                    os.chmod(txtDir + "/" + fileName + '.xlsx', stat.S_IREAD | stat.S_IRGRP | stat.S_IROTH)
                     # os.chmod(fs.path('table.xlsx'), stat.S_IREAD | stat.S_IRGRP | stat.S_IROTH)  # to make it read only
 
             Margin = pd.read_excel(fs.path('table.xlsx'), index_col=0)
