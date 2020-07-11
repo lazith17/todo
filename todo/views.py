@@ -428,7 +428,7 @@ def reportgenerator(request): # generate_invoice
                     try:
                         os.chmod(txtDir + "\\" + fileName + '.xlsx', stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
                         # os.chmod(fs.path('table.xlsx'), stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
-                        print('Files Created Las')
+                        # print('Files Created Las')
                     except:
                         print('Files Created')
                     tableall = ['']
