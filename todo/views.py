@@ -124,12 +124,20 @@ def upload(request):
     if request.method == 'POST':
         try:
             upload_file = request.FILES['document']
-            print(upload_file.name)
+            uploaded_filename = upload_file.name
+            print(uploaded_filename)
             print(upload_file.size)
-            fs = FileSystemStorage()
-            fs.delete(upload_file.name)
-            name = fs.save(upload_file.name, upload_file)
-            context['url'] = fs.url(name)
+            file_Extension = uploaded_filename.split(".")[-1]
+            if file_Extension.lower() == "pdf":
+                fspdf = FileSystemStorage(location='media/pdfs')
+                fspdf.delete(upload_file.name)
+                name = fspdf.save(upload_file.name, upload_file)
+                context['url'] = fspdf.url('/pdfs/' + name)
+            else:
+                fs = FileSystemStorage()
+                fs.delete(upload_file.name)
+                name = fs.save(upload_file.name, upload_file)
+                context['url'] = fs.url(name)
         except MultiValueDictKeyError:
             context['url'] = 'No'
 
@@ -137,7 +145,7 @@ def upload(request):
 
 
 @login_required
-def reportgenerator(request): # generate_invoice
+def reportgenerator(request):
     if request.method == 'GET':
         return render(request, 'todo/reportgenerator.html', {'form': TodoForm()})
     elif 'invoice' in request.POST:
