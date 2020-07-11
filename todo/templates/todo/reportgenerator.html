@@ -11,7 +11,9 @@
     {% endif %}
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn btn-warning">Generate Comparison Report</button>
+        <button type="submit" name="invoice" value="" class="btn btn-warning">Generate Invoice</button>
+        <button type="submit" name="comparison" value="" class="btn btn-warning">Generate Comparison Report</button>
+
     </form>
     <br>
     {% if messages %}
@@ -25,7 +27,8 @@
     {% endif %}
     <div>
         {#<a href="{% static "Comparison_Report.xlsx" %}" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>#}
-        <a href="/media/Comparison_Report.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>
+        <a href="/media/xlsx/VEO_CAN_12078265.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Invoice</a>
+        <a href="/media/Comparison_Report.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Comparison Report</a>
     </div>
 
 {% endblock %}
