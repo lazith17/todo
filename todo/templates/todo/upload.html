@@ -21,15 +21,15 @@
         {% endif %}
     {% endif %}
     <br><br>
-    <h5>Delete All PDF Files</h5>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" name="delete_all_pdfs" value="" class="btn btn-danger">Delete All PDF Files</button>
-    </form>
-    {% if url == 'All PDFs Deleted' %}
-        <p>{{ url }}</p>
-    {% else %}
-        <p></p>
-    {% endif %}
+{#    <h5>Delete All PDF Files</h5>#}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{#        <button type="submit" name="delete_all_pdfs" value="" class="btn btn-danger">Delete All PDF Files</button>#}
+{#    </form>#}
+{#    {% if url == 'All PDFs Deleted' %}#}
+{#        <p>{{ url }}</p>#}
+{#    {% else %}#}
+{#        <p></p>#}
+{#    {% endif %}#}
 
 {% endblock %}
