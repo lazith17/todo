@@ -121,7 +121,7 @@ def deletetodo(request, todo_pk):
 def upload(request):
     todos = Todo.objects.filter(user=request.user)
     context = {}
-    if request.method == 'POST':
+    if 'upload_pdf' in request.POST:
         try:
             upload_file = request.FILES['document']
             uploaded_filename = upload_file.name
@@ -139,7 +139,17 @@ def upload(request):
                 name = fs.save(upload_file.name, upload_file)
                 context['url'] = fs.url(name)
         except MultiValueDictKeyError:
-            context['url'] = 'No'
+            context['url'] = 'No file selected'
+
+
+    elif 'delete_all_pdfs' in request.POST:
+        fspdf_pdf = FileSystemStorage()
+        pdf_path = fspdf_pdf.path('pdfs/')
+        pdf_list = os.listdir(pdf_path)
+        for pdf_file in pdf_list:
+            fspdf_pdf.delete(pdf_path + "/" + pdf_file)
+        context['url'] = "All PDFs Deleted"
+        # return redirect('upload')
 
     return render(request, 'todo/upload.html', context)
 
@@ -149,11 +159,21 @@ def reportgenerator(request):
     if request.method == 'GET':
         fspdf = FileSystemStorage()
         Saveto = fspdf.path('xlsx/')
-        #ddd = str(fspdf)
-        #print("ddd" + ddd)
-
         xlsx_list = os.listdir(Saveto)
         return render(request, 'todo/reportgenerator.html', {'xlsxlist': xlsx_list})
+
+
+    elif 'delete_all' in request.POST:
+
+        fspdf = FileSystemStorage()
+        xlsx_path = fspdf.path('xlsx/')
+        xlsx_list = os.listdir(xlsx_path)
+        for xlsxs in xlsx_list:
+            os.chmod(xlsx_path + "/" + xlsxs, stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
+            fspdf.delete(xlsx_path + "/" + xlsxs)
+
+        return redirect('reportgenerator')
+
     elif 'invoice' in request.POST:
         #try:
         def cn(n):

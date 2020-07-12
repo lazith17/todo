@@ -25,14 +25,21 @@
             {% endfor %}
         </ul>
     {% endif %}
+    <h5>Download Generated Comparison Report</h5>
     <div>
         {#<a href="{% static "Comparison_Report.xlsx" %}" class="btn btn-success px-4 py-2 btn-sm">Download Report</a>#}
-{#        <a href="/media/xlsx/remit.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Invoice</a>#}
-        <a href="/media/Comparison_Report.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Comparison Report</a><br><br>
+        {#<a href="/media/xlsx/remit.xlsx" class="btn btn-success px-4 py-2 btn-sm">Download Invoice</a>#}
+        <a href="/media/Comparison_Report.xlsx" class="btn btn-outline-success px-4 py-2 btn-sm">Download Comparison
+            Report</a><br><br>
     </div>
 
+    <h5>Download Converted Invoices - Excel Files</h5>
     {% for xlsx_file in xlsxlist %}
         <a href='/media/xlsx/{{ xlsx_file }}' class="btn btn-outline-info px-4 py-2 btn-sm">{{ xlsx_file }}</a><br><br>
     {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete_all" value="" class="btn btn-danger">Delete All Excel Files</button>
+    </form>
 
 {% endblock %}

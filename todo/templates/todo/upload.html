@@ -9,15 +9,27 @@
             {% csrf_token %}
             <input type="file" class="btn btn-outline-warning" name="document">
             <br><br>
-            <button type="submit" class="btn btn-primary">Upload File</button>
+            <button type="submit" name="upload_pdf" class="btn btn-primary">Upload File</button>
         </form>
-        {% if url != 'No' %}
+        {% if url != 'All PDFs Deleted' %}
             <p>Uploaded File : <a href="{{ url }}">{{ url }}</a></p>
 
+        {% elif url == 'No file selected' %}
+            <p>{{ url }}</p>
         {% else %}
-            <p>Uploaded File : No file selected</p>
+            <p></p>
         {% endif %}
     {% endif %}
-
+    <br><br>
+    <h5>Delete All PDF Files</h5>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete_all_pdfs" value="" class="btn btn-danger">Delete All PDF Files</button>
+    </form>
+    {% if url == 'All PDFs Deleted' %}
+        <p>{{ url }}</p>
+    {% else %}
+        <p></p>
+    {% endif %}
 
 {% endblock %}
