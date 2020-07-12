@@ -147,7 +147,13 @@ def upload(request):
 @login_required
 def reportgenerator(request):
     if request.method == 'GET':
-        return render(request, 'todo/reportgenerator.html', {'form': TodoForm()})
+        fspdf = FileSystemStorage()
+        Saveto = fspdf.path('xlsx/')
+        #ddd = str(fspdf)
+        #print("ddd" + ddd)
+
+        xlsx_list = os.listdir(Saveto)
+        return render(request, 'todo/reportgenerator.html', {'xlsxlist': xlsx_list})
     elif 'invoice' in request.POST:
         #try:
         def cn(n):
