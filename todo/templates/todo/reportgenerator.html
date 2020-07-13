@@ -11,19 +11,19 @@
     {% endif %}
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" name="invoice" value="" class="btn btn-primary">Generate Invoice</button><br><br>
+        <button type="submit" name="invoice" value="" class="btn btn-primary">Generate Invoice</button>
+        <br><br>
         <button type="submit" name="comparison" value="" class="btn btn-warning">Generate Comparison Report</button>
 
     </form>
     <br>
     {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <div class="alert alert-info" role="alert">
-                    <strong>{{ message }}</strong>
-                </div>
-            {% endfor %}
-        </ul>
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+
     {% endif %}
     <h5>Download Generated Comparison Report</h5>
     <div>
@@ -35,7 +35,8 @@
 
     <h5>Download Converted Invoices - Excel Files</h5>
     {% for xlsx_file in xlsxlist %}
-        <a href='/media/xlsx/{{ xlsx_file }}' class="btn btn-outline-info px-4 py-2 btn-sm">Download {{ xlsx_file }}</a><br><br>
+        <a href='/media/xlsx/{{ xlsx_file }}' class="btn btn-outline-info px-4 py-2 btn-sm">Download {{ xlsx_file }}</a>
+        <br><br>
     {% endfor %}
     <br><br>
     <form method="POST">
