@@ -11,7 +11,7 @@
     {% endif %}
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" name="invoice" value="" class="btn btn-warning">Generate Invoice</button>
+        <button type="submit" name="invoice" value="" class="btn btn-primary">Generate Invoice</button><br><br>
         <button type="submit" name="comparison" value="" class="btn btn-warning">Generate Comparison Report</button>
 
     </form>
@@ -37,6 +37,7 @@
     {% for xlsx_file in xlsxlist %}
         <a href='/media/xlsx/{{ xlsx_file }}' class="btn btn-outline-info px-4 py-2 btn-sm">{{ xlsx_file }}</a><br><br>
     {% endfor %}
+    <br><br>
     <form method="POST">
         {% csrf_token %}
         <button type="submit" name="delete_all" value="" class="btn btn-danger">Delete All Excel Files</button>

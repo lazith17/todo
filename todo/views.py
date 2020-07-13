@@ -171,7 +171,8 @@ def reportgenerator(request):
         for xlsxs in xlsx_list:
             os.chmod(xlsx_path + "/" + xlsxs, stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
             fspdf.delete(xlsx_path + "/" + xlsxs)
-        return render(request, 'todo/reportgenerator.html', {'xlsxlist': xlsx_list})
+        return render(request, 'todo/reportgenerator.html')
+
 
     elif 'invoice' in request.POST:
         #try:
