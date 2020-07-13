@@ -11,25 +11,25 @@
             <br><br>
             <button type="submit" name="upload_pdf" class="btn btn-primary">Upload File</button>
         </form>
-        {% if url != 'All PDFs Deleted' %}
-            <p>Uploaded File : <a href="{{ url }}">{{ url }}</a></p>
+        {% if url == 'No file selected' %}
 
-        {% elif url == 'No file selected' %}
-            <p>{{ url }}</p>
+            <p>No file selected</p>
+        {% elif url == 'All PDFs Deleted' %}
+            <p>All PDFs Deleted</p>
         {% else %}
-            <p></p>
+            <p>Uploaded File : <a href="{{ url }}">{{ url }}</a></p>
         {% endif %}
     {% endif %}
     <br><br>
-{#    <h5>Delete All PDF Files</h5>#}
-{#    <form method="POST">#}
-{#        {% csrf_token %}#}
-{#        <button type="submit" name="delete_all_pdfs" value="" class="btn btn-danger">Delete All PDF Files</button>#}
-{#    </form>#}
-{#    {% if url == 'All PDFs Deleted' %}#}
-{#        <p>{{ url }}</p>#}
-{#    {% else %}#}
-{#        <p></p>#}
-{#    {% endif %}#}
+    <h5>Delete All PDF Files</h5>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete_all_pdfs" value="" class="btn btn-danger">Delete All PDF Files</button>
+    </form>
+    {% if pdf_deleted == 'All PDFs Deleted' %}
+        <p>All PDFs Deleted</p>
+    {% else %}
+        <p></p>
+    {% endif %}
 
 {% endblock %}

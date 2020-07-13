@@ -148,7 +148,7 @@ def upload(request):
         pdf_list = os.listdir(pdf_path)
         for pdf_file in pdf_list:
             fspdf_pdf.delete(pdf_path + "/" + pdf_file)
-        context['url'] = "All PDFs Deleted"
+        context['pdf_deleted'] = "All PDFs Deleted"
         # return redirect('upload')
 
     return render(request, 'todo/upload.html', context)
