@@ -196,7 +196,7 @@ def reportgenerator(request):
                 df0 = DataFrame({'SHIP TO': [t[2][0:38], t[3][0:38], t[4][0:38], t[5][0:38], t[6][0:38]],
                                  'REMIT TO': [t[2][38:77], t[3][38:77], t[4][38:77], t[5][38:77], t[6][38:77]],
                                  'BILL TO': [t[2][77:105], t[3][77:105], t[4][77:105], t[5][77:105], t[6][77:105]],
-                                 'INVOICE NO': [t[2][112:121], 'DATE', t[4][112:121], '', '']})
+                                 'INVOICE NO': [t[2][112:121], 'DATE', t[4][112:122], '', '']})
 
                 df0.to_excel(writer, 'page' + t[0][0], startrow=0, startcol=0, index=False)
 
@@ -279,41 +279,45 @@ def reportgenerator(request):
                             if (check >= 20):
                                 tttt.append(ttt[i])
                                 break
-                CARTONS = tttt[0][1:9]
-                CIG_TAX = tttt[0][9:18]
-                NO_OF_LABEL = tttt[0][18:27]
-                TAXABLE = tttt[0][27:40]
-                NON_TAXABLE = tttt[0][40:51]
-                GROCERY = tttt[0][51:63]
-                NON_GROCERY = tttt[0][63:75]
-                ALLOWANCES = tttt[0][75:100]
-                INVOICE_TOTAL = tttt[0][115:130]
+                try:
+                    CARTONS = tttt[0][1:9]
+                    CIG_TAX = tttt[0][9:18]
+                    NO_OF_LABEL = tttt[0][18:27]
+                    TAXABLE = tttt[0][27:40]
+                    NON_TAXABLE = tttt[0][40:51]
+                    GROCERY = tttt[0][51:63]
+                    NON_GROCERY = tttt[0][63:75]
+                    ALLOWANCES = tttt[0][75:100]
+                    INVOICE_TOTAL = tttt[0][115:130]
 
-                LESS_APPLICABLE_DISCOUNT = tttt[1][115:130]
-                PLUS_TOTAL_CHARGES = tttt[2][115:130]
-                PLEASE_PAY_AMOUNT = tttt[3][115:130]
+                    LESS_APPLICABLE_DISCOUNT = tttt[1][115:130]
+                    PLUS_TOTAL_CHARGES = tttt[2][115:130]
+                    PLEASE_PAY_AMOUNT = tttt[3][115:130]
 
-                TOTES = tttt[2][45:55]
+                    TOTES = tttt[2][45:55]
 
-                a = tttt[4][90:130]
-                b = tttt[5][90:130]
-                c = tttt[6][90:130]
+                    a = tttt[4][90:130]
+                    b = tttt[5][90:130]
+                    c = tttt[6][90:130]
 
-                df2 = DataFrame({'CARTONS': [CARTONS, '', '', '', '', '', ''],
-                                 'CIG TAX': [CIG_TAX, '', '', '', '', '', ''],
-                                 'NO OF LABEL': [NO_OF_LABEL, '', '', '', '', '', ''],
-                                 'TAXABLE': [TAXABLE, '', '', '', '', '', ''],
-                                 'NON_TAXABLE': [NON_TAXABLE, '', '', '', 'TOTES IN', '', ''],
-                                 'GROCERY': [GROCERY, '', '', '', TOTES, '', ''],
-                                 'NON GROCERY': [NON_GROCERY, '', '', '', '', '', ''],
-                                 'ALLOWANCES': [ALLOWANCES, '', '', '', '', '', ''],
-                                 '': ['', '', '', '', '', '', ''],
-                                 'INVOICE TOTAL': ['LESS APPLICABLE DISCOUNT', 'PLUS TOTAL CHARGES',
-                                                   'PLEASE PAY THIS AMOUNT', '', a, b, c],
-                                 INVOICE_TOTAL: [LESS_APPLICABLE_DISCOUNT, PLUS_TOTAL_CHARGES, PLEASE_PAY_AMOUNT,
-                                                 '', '', '', '']})
+                    df2 = DataFrame({'CARTONS': [CARTONS, '', '', '', '', '', ''],
+                                     'CIG TAX': [CIG_TAX, '', '', '', '', '', ''],
+                                     'NO OF LABEL': [NO_OF_LABEL, '', '', '', '', '', ''],
+                                     'TAXABLE': [TAXABLE, '', '', '', '', '', ''],
+                                     'NON_TAXABLE': [NON_TAXABLE, '', '', '', 'TOTES IN', '', ''],
+                                     'GROCERY': [GROCERY, '', '', '', TOTES, '', ''],
+                                     'NON GROCERY': [NON_GROCERY, '', '', '', '', '', ''],
+                                     'ALLOWANCES': [ALLOWANCES, '', '', '', '', '', ''],
+                                     '': ['', '', '', '', '', '', ''],
+                                     'INVOICE TOTAL': ['LESS APPLICABLE DISCOUNT', 'PLUS TOTAL CHARGES',
+                                                       'PLEASE PAY THIS AMOUNT', '', a, b, c],
+                                     INVOICE_TOTAL: [LESS_APPLICABLE_DISCOUNT, PLUS_TOTAL_CHARGES, PLEASE_PAY_AMOUNT,
+                                                     '', '', '', '']})
 
-                df2.to_excel(writer, sheet_name='total', startrow=0, startcol=0, index=False)
+                    df2.to_excel(writer, sheet_name='total', startrow=0, startcol=0, index=False)
+                except:
+                    print("error in Carton")
+                    pass
 
         def convert_pdf(pdf_path, codec='utf-8', password=''):
 
