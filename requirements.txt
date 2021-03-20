@@ -68,7 +68,7 @@ item==0.0.3
 itsdangerous==1.1.0
 jdcal==1.4.1
 jedi==0.17.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 joblib==0.15.1
 jsonconfig-tool==1.5
 jsonschema==3.2.0
