@@ -143,7 +143,7 @@ python-pptx==0.6.18
 python3-openid==3.1.0
 pytils==0.3
 pytz==2018.5
-pywin32==227
+pywin32==301
 pywin32-ctypes==0.2.0
 pywinpty==0.5.7
 pyxnat==1.3
