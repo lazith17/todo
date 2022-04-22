@@ -132,7 +132,7 @@ Pygments==2.6.1
 PyInstaller==3.6
 pyodbc==4.0.30
 pyparsing==2.4.7
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pyquery==1.4.1
 pyrsistent==0.16.0
 pystache==0.5.4
