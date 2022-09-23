@@ -118,7 +118,7 @@ Pillow==7.1.2
 ply==3.11
 prometheus-client==0.7.1
 prompt-toolkit==3.0.5
-protobuf==3.11.3
+protobuf==3.18.3
 prov==1.5.3
 public==2019.4.13
 py3-validate-email==0.2.9
